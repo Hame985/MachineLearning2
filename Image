@@ -9,12 +9,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import label_binarize
 
-DATASET_PATH = r"C:\Users\HP\Downloads\archive\fruits-360_original-size\fruits-360-original-size"
+DATASET_PATH = r"C:\Users\HP\Downloads\archive\fruits-360_100x100\fruits-360"
 
 X = []
 y = []
 
-max_images = 2000
+max_images = 2300
 count = 0
 
 
@@ -46,7 +46,7 @@ y_num = np.array([label_to_num[l] for l in y])
 
 # Train-Test split
 X_train, X_test, y_train_num, y_test_num, y_train, y_test = train_test_split(
-    X, y_num, y, test_size=0.2, random_state=50, stratify=y_num
+    X, y_num, y, test_size=0.2, random_state=80, stratify=y_num
 )
 
 
@@ -54,6 +54,7 @@ X_train, X_test, y_train_num, y_test_num, y_train, y_test = train_test_split(
 logreg = LogisticRegression(max_iter=900)
 logreg.fit(X_train, y_train)
 y_pred_lr = logreg.predict(X_test)
+accuracy_score(y_test, y_pred_lr)
 
 print("Logistic Regression Accuracy:", accuracy_score(y_test, y_pred_lr))
 
